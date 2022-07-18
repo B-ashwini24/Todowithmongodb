@@ -5,6 +5,6 @@ app.use(cors())
 app.use(express.json())
 const prodrouter=require("./Router/products.routes")
 
-app.use("/Product",prodrouter)
+app.use("/todo",prodrouter)
 
 module.exports=app;

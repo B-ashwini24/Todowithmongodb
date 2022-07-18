@@ -1,13 +1,11 @@
 
-const Products=require("../models/product")
+const Task=require("../models/product")
 const saveproddata=(req,res)=>{
-    const product=new Products({
-        name:req.body.name,
-        price:req.body.price,
-        quantity:req.body.quantity,
-        brand:req.body.brand
+    const task=new Task({
+        taskname:req.body.taskname
+        
     })
-    product.save().then(data=>{
+    task.save().then(data=>{
         res.send({
             message:"data saved",
             data:data
@@ -17,7 +15,7 @@ const saveproddata=(req,res)=>{
 }
 
 const getproducts=(req,res)=>{
-    Products.find().then(result=>{
+Task.find().then(result=>{
         res.send({
             
             data:result
@@ -25,9 +23,9 @@ const getproducts=(req,res)=>{
     })
 }
 const deletedata=(req,res)=>{
-    Products.deleteOne({_id:req.params.id}).then(response=>{
+    Task.deleteOne({_id:req.params.id}).then(response=>{
 res.send({
-    message:"Product deleted"
+    message:"Task deleted"
 })
     }).catch(err=>{
         console.log(err)
@@ -36,7 +34,7 @@ res.send({
 const editdata=(req,res)=>{
     const data=req.body
     console.log(data)
-    Products.updateOne({_id:data._id},{$set:{name:data.name,quantity:data.quantity}}).then(response=>{
+    Task.updateOne({_id:data._id},{$set:{taskname:data.taskname}}).then(response=>{
         res.send({
             message:"data updated"
         })
